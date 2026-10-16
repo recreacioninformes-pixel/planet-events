@@ -368,7 +368,8 @@
       visita: {
         titulo: "Visita a la granja",
         horario: "Viernes a domingo, de 9:00 a.m. a 6:00 p.m.",
-        buffet: { dias: "Sábados y domingos, de 10:00 a.m. a 12:00 p.m.", adulto: 250, nino: 150, nota: "Incluye acceso a la granja hasta las 2:00 p.m." },
+        entrada: { precio: 100, nota: "Acceso a la granja" },
+        buffet: { dias: "Sábados y domingos, de 10:00 a.m. a 4:30 p.m.", adulto: 250, nino: 150, nota: "Incluye acceso a la granja" },
         gratis: "Menores de 3 años no pagan entrada ni buffet.",
         compra: "https://soldout.ticketcity.mx/site/elegir/evento/granjaventura-leon/foro/granja-ventura"
       },
@@ -523,6 +524,7 @@
     if (d.visita) {
       var v = d.visita;
       visita = '<section class="visita" ' + c + '><h2>' + esc(v.titulo) + '</h2><p class="lema">' + esc(v.horario) + '</p><div class="pk">' +
+        (v.entrada ? '<div><p class="who">Entrada general</p><p class="pr num">' + money(v.entrada.precio) + '</p><p class="what">' + esc(v.entrada.nota) + '</p></div>' : "") +
         '<div><p class="who">Buffet adulto</p><p class="pr num">' + money(v.buffet.adulto) + '</p><p class="what">' + esc(v.buffet.dias) + '</p></div>' +
         '<div><p class="who">Buffet niños</p><p class="pr num">' + money(v.buffet.nino) + '</p><p class="what">' + esc(v.buffet.nota) + '</p></div></div>' +
         '<p class="note">' + esc(v.gratis) + '</p>' +
