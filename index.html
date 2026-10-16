@@ -119,6 +119,7 @@
   .dcard .meta { display: flex; gap: 8px 12px; align-items: center; flex-wrap: wrap; margin-top: auto; padding-top: 10px; font-size: 14px; }
   .dcard .from { font-family: var(--font-display); font-weight: 700; font-size: 20px; }
   .dcard .more { font-weight: 600; font-size: 14px; margin-left: auto; }
+  .aviso { display: inline-block; margin-top: 16px; padding: 10px 16px; border: 1.5px solid var(--ink); border-radius: 14px; background: var(--mustard); font-weight: 700; font-size: 15px; }
   .chip { display: inline-block; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--bg); }
 
   /* Adultos */
@@ -392,7 +393,7 @@
       }
     },
     {
-      id: "dino", logo: "assets/logos/dino-icon.jpg", banner: "assets/logos/dino-banner.jpg", bg: "rgb(252,243,234)", color: "--c-dino", nombre: "Dinoplaneta", tag: "Salón de fiestas infantiles",
+      id: "dino", apertura: true, logo: "assets/logos/dino-icon.jpg", banner: "assets/logos/dino-banner.jpg", bg: "rgb(252,243,234)", color: "--c-dino", nombre: "Dinoplaneta", tag: "Salón de fiestas infantiles",
       descripcion: "Un espacio temático de dinosaurios donde los niños viven experiencias únicas con juegos, convivencia familiar y actividades educativas. Un lugar donde aprender y divertirse van de la mano.",
       capacidad: "Hasta 70 personas",
       galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
@@ -409,7 +410,7 @@
       }
     },
     {
-      id: "fe", logo: "assets/logos/fe-icon.jpg", banner: "assets/logos/fe-banner.jpg", bg: "rgb(1,11,36)", color: "--c-fe", nombre: "Fut Experience", tag: "Museo interactivo de fútbol y salón de fiestas",
+      id: "fe", apertura: true, logo: "assets/logos/fe-icon.jpg", banner: "assets/logos/fe-banner.jpg", bg: "rgb(1,11,36)", color: "--c-fe", nombre: "Fut Experience", tag: "Museo interactivo de fútbol y salón de fiestas",
       descripcion: "Museo interactivo dedicado a la historia del fútbol, con enfoque especial en México, la Selección Mexicana y el fútbol de León. También funciona como salón de fiestas temático.",
       capacidad: "Hasta 70 personas",
       galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
@@ -425,14 +426,15 @@
       }
     },
     {
-      id: "jk", logo: "assets/logos/jk-icon.jpg", banner: "assets/logos/jk-banner.jpg", bg: "rgb(251,243,232)", color: "--c-jk", nombre: "Jungle Kids", tag: "Salón de fiestas infantiles",
+      id: "jk", apertura: true, logo: "assets/logos/jk-icon.jpg", banner: "assets/logos/jk-banner.jpg", bg: "rgb(251,243,232)", color: "--c-jk", nombre: "Jungle Kids", tag: "Salón de fiestas infantiles",
       descripcion: "Un espacio divertido, seguro y diseñado para que los niños jueguen, exploren y celebren. Ideal para cumpleaños infantiles, bautizos, baby showers familiares, graduaciones de kínder, reuniones familiares y posadas infantiles.",
       capacidad: "Hasta 50 adultos",
       galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
       precios: [["Lunes a jueves", 3800], ["Viernes a domingo", 4800]],
       incluye: ["Renta del espacio por 5 horas, 1 de montaje y 1 de desmontaje", "Mobiliario para 50 personas, con montaje y acomodo", "Limpieza antes y después del evento", "Productos para baños", "1 persona encargada para apoyo y supervisión"],
       nota: "Horario límite: 10:00 PM.",
-      direccion: null,                                                                  // POR CONFIRMAR: el PDF trae dos direcciones distintas
+      direccion: "Pedro Moreno 243 A, Zona Centro, León de los Aldama, Gto.",
+      mapa: "Pedro Moreno 243 A, Zona Centro, León, Guanajuato",
       escolar: {
         destacados: [["Descubre","La naturaleza de una forma divertida"],["Aprende","Con actividades lúdicas y educativas"],["Convive","En un ambiente seguro y adaptado para grupos escolares"],["Vive","Una experiencia única en el mundo de la selva"]],
         texto: "Además de celebrar fiestas, recibimos grupos escolares para vivir una experiencia de aprendizaje y diversión en el mundo de la selva.",
@@ -441,7 +443,7 @@
       }
     },
     {
-      id: "sm", logo: "assets/logos/sm-icon.jpg", banner: "assets/logos/sm-banner.jpg", bg: "rgb(252,248,237)", color: "--c-sm", nombre: "Space Museum", tag: "Próximamente",
+      id: "sm", apertura: true, logo: "assets/logos/sm-icon.jpg", banner: "assets/logos/sm-banner.jpg", bg: "rgb(252,248,237)", color: "--c-sm", nombre: "Space Museum", tag: "Próximamente",
       proximamente: true,                                                              // POR DEFINIR: descripción, capacidad, precios, qué incluye, dirección y visitas escolares
       descripcion: "Muy pronto compartiremos toda la información de este destino: precios, qué incluye y visitas escolares.",
       capacidad: "", galeria: [], precios: [], incluye: [], nota: "", direccion: null, escolar: null
@@ -475,7 +477,7 @@
     return '<a class="dcard" href="#' + d.id + '" style="--c:var(' + d.color + ')" aria-label="Ver ' + esc(d.nombre) + '">' +
       '<div class="pic logo" style="background:' + d.bg + '"><img src="' + d.logo + '" alt="Logo de ' + esc(d.nombre) + '" loading="lazy"></div>' +
       '<div class="in"><h3>' + esc(d.nombre) + '</h3><p class="tag">' + esc(d.tag) + '</p>' +
-      '<div class="meta">' + (d.proximamente ? '<span class="chip">Próximamente</span>' : '<span class="from num">Desde ' + money(min) + '</span><span class="chip">' + esc(d.capacidad.replace("Hasta ", "")) + '</span>') + '<span class="more">Ver destino →</span></div></div></a>';
+      '<div class="meta">' + (d.proximamente ? '<span class="chip">Próximamente</span>' : (d.apertura ? '<span class="chip">Próxima apertura</span>' : '') + '<span class="from num">Desde ' + money(min) + '</span><span class="chip">' + esc(d.capacidad.replace("Hasta ", "")) + '</span>') + '<span class="more">Ver destino →</span></div></div></a>';
   }).join("");
 
   document.getElementById("svc-list").innerHTML = SERVICIOS.map(function (s) { return "<li>" + s + "</li>"; }).join("");
@@ -541,6 +543,7 @@
     var how = '<p class="how"><b>Para reservar:</b> ' + PASOS_ESCOLAR.join(" ") + "</p>";
     var head = '<a class="back" href="#infantiles">← Destinos infantiles</a><div class="banner"><img src="' + d.banner + '" alt="' + esc(d.nombre) + '"></div>';
     var title = '<div class="titlerow"><div class="lg" style="background:' + d.bg + '"><img src="' + d.logo + '" alt="Logo de ' + esc(d.nombre) + '"></div><div><h1>' + esc(d.nombre) + '</h1><p class="tag" style="margin-top:4px">' + esc(d.tag) + '</p></div></div>';
+    if (d.apertura) title += '<p class="aviso">Estamos próximos a aperturar, ¡mantente pendiente!</p>';
     if (d.proximamente) {
       return head + '<div class="detail-top" ' + c + '><div class="gal">' + gallery + '</div><div class="info">' + title +
         '<p class="desc">' + esc(d.descripcion) + '</p><div class="box"><h2>¿Te interesa?</h2><p class="note" style="margin-top:0">Escríbenos y te avisamos en cuanto tengamos fechas y precios.</p>' +
