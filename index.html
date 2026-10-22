@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
 <style>
   /* Layout: papel crema con línea negra a mano. Inicio con planeta ilustrado y tarjetas de destinos infantiles;
-     cada destino abre su propia página con galería, características, precios y visitas escolares. Pestaña aparte para adultos.
+     cada destino abre su propia página con galería, características, precios y visitas escolares. Sección para adultos con Terraza Magnolia y Terraza Mural (datos de grupojegar.com/terrazas).
      Una sola apariencia clara a propósito: la ilustración y el logo son tinta sobre papel. */
   :root {
     --bg: #EEE8DC;
@@ -26,6 +26,8 @@
     --c-fe: #5F7C8F;
     --c-jk: #9A4A40;
     --c-west: #A9774A;
+    --c-tm: #C98BA0;
+    --c-tmu: #6E8B8B;
     --c-sm: #E58A3C;
     --font-display: "Outfit", "Trebuchet MS", system-ui, sans-serif;
     --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -113,6 +115,15 @@
   .titlerow { display: flex; align-items: center; gap: 16px; }
   .titlerow .lg { width: 84px; height: 84px; border-radius: 20px; border: 1.5px solid var(--ink); overflow: hidden; flex: none; }
   .titlerow .lg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .detail-top.two { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 700px) { .detail-top.two { grid-template-columns: 1fr; } }
+  .titlerow .lg.ini { display: grid; place-items: center; font-family: var(--font-display); font-size: 30px; font-weight: 700; color: var(--ink); }
+  .dcard .pic.west { display: grid; place-items: center; background: var(--c-west); }
+  .dcard .pic.west svg { width: 110px; height: auto; }
+  .banq { margin-bottom: 40px; }
+  .banq h2 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 700; letter-spacing: -0.02em; }
+  .banq .lema { margin-top: 6px; color: var(--muted); }
+  .banq ul { list-style: none; margin: 8px 0 0; padding: 0; font-size: 14px; display: grid; gap: 3px; }
   .dcard .in { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
   .dcard h3 { font-size: 23px; font-weight: 700; letter-spacing: -0.01em; }
   .dcard .tag { font-size: 14px; color: var(--muted); }
@@ -280,19 +291,9 @@
   <section id="adultos" aria-labelledby="t-ad">
     <div class="sec-head">
       <h2 id="t-ad">Para adultos</h2>
-      <p>Espacios para celebrar entre adultos.</p>
+      <p>Terrazas para cumpleaños, desayunos, reuniones y eventos sociales o empresariales.</p>
     </div>
-    <div class="adult">
-      <div class="side" aria-hidden="true">
-        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="38" style="fill:var(--bg);stroke:var(--ink)" stroke-width="3"/><path d="M60 26 L67 49 L91 49 L72 63 L79 86 L60 72 L41 86 L48 63 L29 49 L53 49Z" style="fill:var(--mustard);stroke:var(--ink)" stroke-width="3" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="txt">
-        <span class="chip">Próximamente</span>
-        <h3 id="ad-name">Salón western</h3>
-        <p id="ad-text">Un salón estilo western para celebraciones de adultos, dentro de Granja Ventura. Muy pronto compartiremos capacidad, precios y fotos.</p>
-        <a class="btn btn-main" id="ad-wa" href="#contacto">Avísame cuando abra</a>
-      </div>
-    </div>
+    <div class="grid" id="ad-grid"></div>
   </section>
 
   <section id="servicios" aria-labelledby="t-svc">
@@ -466,7 +467,45 @@
   function wa(msg) { return "https://wa.me/" + CONTACTO.whatsapp + "?text=" + encodeURIComponent(msg); }
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
   var byId = {};
+  /* Espacios para adultos (datos de grupojegar.com/terrazas) */
+  var ADULTOS = [
+    {
+      id: "magnolia", adulto: true, color: "--c-tm", bg: "var(--c-tm)", ini: "TM", nombre: "Terraza Magnolia", tag: "Suites, salón y terraza",
+      descripcion: "Un espacio versátil, acogedor y rodeado de naturaleza para celebrar tus momentos más especiales.",
+      capacidad: "Hasta 70 personas",
+      ideal: ["Desayunos y brunch", "Cumpleaños y eventos familiares", "Eventos sociales", "Eventos empresariales"],
+      galeria: [["assets/tm/1.jpg", "Terraza Magnolia"], ["assets/tm/2.jpg", "Terraza Magnolia"], ["assets/tm/3.jpg", "Terraza Magnolia"]], galAspect: "3 / 4",
+      precios: [["Lunes a jueves", 4000], ["Viernes y domingo", 4500], ["Sábados", 5000]],
+      incluye: ["5 horas de evento", "1 hora de montaje", "1 hora de desmontaje", "Mobiliario para 70 personas", "Limpieza antes y después del evento", "Productos para baños", "Una persona de apoyo y supervisión"],
+      nota: "Horario límite: 12:00 a.m.",
+      direccion: "Pedro Moreno 243A, Zona Centro, León, Guanajuato.",
+      mapa: "Pedro Moreno 243A, Zona Centro, León, Guanajuato",
+      banquetes: {
+        titulo: "Banquetes en Magnolia",
+        lema: "Cuatro opciones de comida y cena, disponibles dentro de nuestro salón para complementar tu evento.",
+        lista: [
+          ["Barra de pizzas", 170, ["3 variedades de pizza", "Pasta a elegir", "Ensalada fresca", "Aderezos y complementos", "Postre sencillo"]],
+          ["Taquiza mexicana", 110, ["4 guisados a elegir", "Arroz y frijoles", "Nopales preparados", "Salsas y guacamole", "Tortillas"]],
+          ["Buffet Magnolia", 220, ["Pollo al gratín o pechuga en salsa", "Pasta cremosa", "Ensalada verde", "Verduras salteadas", "Postre del día"]],
+          ["Premium Magnolia", 290, ["Filete de res o salmón al grill", "Ensalada mixta", "Puré de papa", "Espárragos", "Café o postre del día"]]
+        ]
+      }
+    },
+    {
+      id: "mural", adulto: true, color: "--c-tmu", bg: "var(--c-tmu)", ini: "TM", nombre: "Terraza Mural", tag: "Celebra en un espacio con historia",
+      descripcion: "Un ambiente único en el corazón de la ciudad, ideal para tus eventos más especiales.",
+      capacidad: "Hasta 40 personas",
+      ideal: ["Desayunos y brunch", "Cumpleaños y eventos familiares", "Eventos sociales", "Eventos empresariales"],
+      galeria: [["assets/tmu/1.jpg", "Terraza Mural"], ["assets/tmu/2.jpg", "Terraza Mural"], ["assets/tmu/3.jpg", "Terraza Mural"], ["assets/tmu/4.jpg", "Terraza Mural"], ["assets/tmu/5.jpg", "Terraza Mural"]], galAspect: "3 / 4",
+      precios: [["Sábado y domingo por la mañana", 7000], ["Domingo a jueves", 8000], ["Viernes y sábado en la noche", 10000]],
+      incluye: ["5 horas de evento", "1 hora de montaje", "1 hora de desmontaje", "Mobiliario para 40 personas", "Limpieza antes y después del evento", "Productos para baños", "Una persona de apoyo y supervisión"],
+      nota: "",
+      direccion: "Calzada de los Héroes 211, Zona Centro, León, Guanajuato.",
+      mapa: "Calzada de los Héroes 211, Zona Centro, León, Guanajuato"
+    }
+  ];
   DESTINOS.forEach(function (d) { byId[d.id] = d; });
+  ADULTOS.forEach(function (d) { byId[d.id] = d; });
 
   var homeEl = document.getElementById("home");
   var detailEl = document.getElementById("detail");
@@ -479,6 +518,19 @@
       '<div class="in"><h3>' + esc(d.nombre) + '</h3><p class="tag">' + esc(d.tag) + '</p>' +
       '<div class="meta">' + (d.proximamente ? '<span class="chip">Próximamente</span>' : (d.apertura ? '<span class="chip">Próxima apertura</span>' : '') + '<span class="from num">Desde ' + money(min) + '</span><span class="chip">' + esc(d.capacidad.replace("Hasta ", "")) + '</span>') + '<span class="more">Ver destino →</span></div></div></a>';
   }).join("");
+
+  /* Tarjetas para adultos */
+  document.getElementById("ad-grid").innerHTML = ADULTOS.map(function (d) {
+    var min = Math.min.apply(null, d.precios.map(function (p) { return p[1]; }));
+    return '<a class="dcard" href="#' + d.id + '" style="--c:var(' + d.color + ')" aria-label="Ver ' + esc(d.nombre) + '">' +
+      '<div class="pic"><img src="' + d.galeria[0][0] + '" alt="' + esc(d.nombre) + '" loading="lazy"></div>' +
+      '<div class="in"><h3>' + esc(d.nombre) + '</h3><p class="tag">' + esc(d.tag) + '</p>' +
+      '<div class="meta"><span class="from num">Desde ' + money(min) + '</span><span class="chip">' + esc(d.capacidad.replace("Hasta ", "")) + '</span><span class="more">Ver terraza →</span></div></div></a>';
+  }).join("") +
+    '<a class="dcard" id="ad-wa" href="#contacto" style="--c:var(--c-west)" aria-label="Salón western, próximamente">' +
+      '<div class="pic west" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="38" style="fill:var(--bg);stroke:var(--ink)" stroke-width="3"/><path d="M60 26 L67 49 L91 49 L72 63 L79 86 L60 72 L41 86 L48 63 L29 49 L53 49Z" style="fill:var(--mustard);stroke:var(--ink)" stroke-width="3" stroke-linejoin="round"/></svg></div>' +
+      '<div class="in"><h3>Salón western</h3><p class="tag">Dentro de Granja Ventura. Muy pronto compartiremos capacidad, precios y fotos.</p>' +
+      '<div class="meta"><span class="chip">Próximamente</span><span class="more">Avísame cuando abra →</span></div></div></a>';
 
   document.getElementById("svc-list").innerHTML = SERVICIOS.map(function (s) { return "<li>" + s + "</li>"; }).join("");
   document.getElementById("hx").textContent = money(HORA_EXTRA);
@@ -541,8 +593,16 @@
         '</div><span class="chip tl-badge">¡Ya incluido en tu boleto!</span></section>';
     }
     var how = '<p class="how"><b>Para reservar:</b> ' + PASOS_ESCOLAR.join(" ") + "</p>";
-    var head = '<a class="back" href="#infantiles">← Destinos infantiles</a><div class="banner"><img src="' + d.banner + '" alt="' + esc(d.nombre) + '"></div>';
-    var title = '<div class="titlerow"><div class="lg" style="background:' + d.bg + '"><img src="' + d.logo + '" alt="Logo de ' + esc(d.nombre) + '"></div><div><h1>' + esc(d.nombre) + '</h1><p class="tag" style="margin-top:4px">' + esc(d.tag) + '</p></div></div>';
+    var banq = "";
+    if (d.banquetes) {
+      banq = '<section class="banq" ' + c + '><h2>' + esc(d.banquetes.titulo) + '</h2><p class="lema">' + esc(d.banquetes.lema) + '</p><div class="pk">' +
+        d.banquetes.lista.map(function (b) {
+          return '<div><p class="who">' + esc(b[0]) + '</p><p class="pr num">' + money(b[1]) + ' <small>por persona</small></p><ul>' + b[2].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
+        }).join("") + '</div></section>';
+    }
+    var head = d.adulto ? '<a class="back" href="#adultos">← Para adultos</a>'
+      : '<a class="back" href="#infantiles">← Destinos infantiles</a><div class="banner"><img src="' + d.banner + '" alt="' + esc(d.nombre) + '"></div>';
+    var title = '<div class="titlerow">' + (d.logo ? '<div class="lg" style="background:' + d.bg + '"><img src="' + d.logo + '" alt="Logo de ' + esc(d.nombre) + '"></div>' : '<div class="lg ini" style="background:' + d.bg + '">' + esc(d.ini || d.nombre.charAt(0)) + '</div>') + '<div><h1>' + esc(d.nombre) + '</h1><p class="tag" style="margin-top:4px">' + esc(d.tag) + '</p></div></div>';
     if (d.apertura) title += '<p class="aviso">Estamos próximos a aperturar, ¡mantente pendiente!</p>';
     if (d.proximamente) {
       return head + '<div class="detail-top" ' + c + '><div class="gal">' + gallery + '</div><div class="info">' + title +
@@ -554,21 +614,24 @@
         '<div class="gal">' + gallery + '</div>' +
         '<div class="info">' + title +
           '<p class="desc">' + esc(d.descripcion) + '</p>' +
+          (d.ideal ? '<div class="chips">' + d.ideal.map(function (x) { return '<span class="chip">' + esc(x) + '</span>'; }).join("") + '</div>' : "") +
           '<div class="chips"><span class="chip">' + esc(d.capacidad) + '</span><span class="chip">5 horas de evento</span>' + (d.nota ? '<span class="chip">' + esc(d.nota.replace(/\.$/, "")) + '</span>' : "") + '</div>' +
           '<div class="box"><h2>Renta del salón</h2>' + prices +
-            '<p class="note">Hora extra ' + money(HORA_EXTRA) + '. Anticipo del 50% para apartar y liquidación 7 días antes del evento.</p>' +
+            (d.adulto ? '<p class="note">Anticipo del 50% de la renta para apartar; horas extra y servicios adicionales se pagan completos al apartar. Liquidación 7 días antes del evento.</p>'
+              : '<p class="note">Hora extra ' + money(HORA_EXTRA) + '. Anticipo del 50% para apartar y liquidación 7 días antes del evento.</p>') +
             '<a class="btn btn-main" href="' + wa("Hola, me interesa rentar " + d.nombre + ". ¿Me pasan disponibilidad y cotización?") + '" target="_blank" rel="noopener">Cotizar ' + esc(d.nombre) + '</a></div>' +
         '</div>' +
       '</div>' +
-      '<div class="detail-top" style="padding-top:0;grid-template-columns:1fr 1fr" ' + c + '>' +
+      '<div class="detail-top two" style="padding-top:0" ' + c + '>' +
         '<div class="box" style="margin-top:0"><h2>Qué incluye la renta</h2><ul class="incl">' + incl + '</ul></div>' +
         '<div class="box where" style="margin-top:0;padding-block:20px"><h2>Dónde estamos</h2>' +
           '<p>' + (d.direccion ? esc(d.direccion) : "Pregúntanos la ubicación por WhatsApp.") + '</p>' +
           '<p class="note">Servicios adicionales como decoración, alimentos, pastel, animación y más se cotizan aparte.</p></div>' +
       '</div>' +
       visita + talleres +
+      (d.adulto ? banq :
       '<section class="school" ' + c + ' id="escolar-' + d.id + '"><h2>Visitas escolares en ' + esc(d.nombre) + '</h2><p class="lead">' + esc(e.texto) + '</p>' + dest + escolar + how +
-        '<a class="btn btn-main" href="' + wa("Hola, quiero cotizar una visita escolar a " + d.nombre + ". Escuela: ___ Fecha: ___ Alumnos: ___ Grado: ___") + '" target="_blank" rel="noopener">Cotizar visita escolar</a></section>' +
+        '<a class="btn btn-main" href="' + wa("Hola, quiero cotizar una visita escolar a " + d.nombre + ". Escuela: ___ Fecha: ___ Alumnos: ___ Grado: ___") + '" target="_blank" rel="noopener">Cotizar visita escolar</a></section>') +
       mapa +
       '<div style="height:48px"></div>';
   }
