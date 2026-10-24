@@ -21,6 +21,10 @@
 
   var PASOS_ESCOLAR = ["Solicita una cotización.", "Comparte nombre de la escuela, fecha, número de alumnos y grado escolar.", "Agendamos tu visita.", "Realiza el anticipo para asegurar la fecha."];
 
+  /* Renta del salón: igual en todos los destinos infantiles (Granja Ventura, Dinoplaneta, Fut Experience, Jungle Kids).
+     Para cambiar el precio de todos, edita solo esta línea. */
+  var PRECIOS_RENTA = [["Lunes a jueves", 4000], ["Viernes y domingo", 5000], ["Sábado", 6000]];
+
   /* Precio de visitas escolares: igual en todos los destinos infantiles */
   var PRECIOS_ESCOLARES = [["Escuela pública", 50, "Maestros no pagan"], ["Escuela privada", 70, "Maestros no pagan"]];
 
@@ -30,7 +34,7 @@
       descripcion: "Parque temático donde niños y familias disfrutan el contacto con la naturaleza: recorridos guiados, convivencia con animales de granja, museo didáctico, huerto y actividades interactivas. Ideal para visitas escolares y convivencias. Además cuenta con un espacio para fiestas infantiles, rodeado de naturaleza y diversión.",
       capacidad: "Hasta 120 personas",
       galeria: [["assets/gv/1.jpg", "Huerto y área de juegos"], ["assets/gv/2.jpg", "Niños regando el huerto"], ["assets/gv/3.jpg", "Salón de fiestas"], ["assets/gv/4.jpg", "Recorrido con los caballos"], ["assets/gv/5.jpg", "Convivencia con los animales"], ["assets/gv/6.jpg", "Jardín con carpa, inflable y juegos"], ["assets/gv/7.jpg", "Área de conejos y gallinas"], ["assets/gv/8.jpg", "Salón de fiestas"], ["assets/gv/9.jpg", "Barra de café y snacks"], ["assets/gv/10.jpg", "Corrales techados de la granja"], ["assets/gv/11.jpg", "Salón con salida a la granja"]], galAspect: "3 / 4",                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
-      precios: [["Lunes a jueves", 4000], ["Viernes y domingo", 5000], ["Sábado", 6000]],   // POR CONFIRMAR: precios ajustados
+      precios: PRECIOS_RENTA,
       incluye: ["Valet parking", "Limpieza del espacio", "Productos y consumibles en baños", "Personal de seguridad", "Personal de atención y limpieza en baños", "Animadores y visita guiada", "Mobiliario y cuidadoras para niños", "5 horas de evento, con tiempo de montaje y desmontaje"],
       nota: "",
       direccion: "Blvd. Ibarrilla #96, atrás del Vivero Municipal, León, Guanajuato.",
@@ -66,7 +70,7 @@
       descripcion: "Un espacio temático de dinosaurios donde los niños viven experiencias únicas con juegos, convivencia familiar y actividades educativas. Un lugar donde aprender y divertirse van de la mano.",
       capacidad: "Hasta 70 personas",
       galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
-      precios: [["Lunes a jueves", 4000], ["Viernes y domingo", 5000], ["Sábado", 6000]],
+      precios: PRECIOS_RENTA,
       incluye: ["Valet parking y estacionamiento", "Limpieza del espacio", "Productos y consumibles en baños", "Personal de seguridad", "Personal de atención y limpieza en baños", "Mobiliario para 70 personas", "5 horas de evento, 1 de montaje y 1 de desmontaje"],
       nota: "",
       direccion: "Blvd. Algeciras 1402, Col. Arbide, 37360 León de los Aldama, Gto.",
@@ -83,7 +87,7 @@
       descripcion: "Museo interactivo dedicado a la historia del fútbol, con enfoque especial en México, la Selección Mexicana y el fútbol de León. También funciona como salón de fiestas temático.",
       capacidad: "Hasta 70 personas",
       galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
-      precios: [["Lunes a jueves", 4000], ["Viernes y domingo", 5000], ["Sábado", 6000]],
+      precios: PRECIOS_RENTA,
       incluye: ["Valet parking y estacionamiento", "Limpieza del espacio", "Productos y consumibles en baños", "Personal de seguridad", "Personal de atención y limpieza en baños", "Mobiliario para 70 personas", "5 horas de evento, 1 de montaje y 1 de desmontaje"],
       nota: "",
       direccion: "Tancítaro 1401, San Jerónimo 1, 37204, León de los Aldama.",
@@ -99,7 +103,7 @@
       descripcion: "Un espacio divertido, seguro y diseñado para que los niños jueguen, exploren y celebren. Ideal para cumpleaños infantiles, bautizos, baby showers familiares, graduaciones de kínder, reuniones familiares y posadas infantiles.",
       capacidad: "Hasta 50 adultos",
       galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
-      precios: [["Lunes a jueves", 4000], ["Viernes y domingo", 5000], ["Sábado", 6000]],
+      precios: PRECIOS_RENTA,
       incluye: ["Renta del espacio por 5 horas, 1 de montaje y 1 de desmontaje", "Mobiliario para 50 personas, con montaje y acomodo", "Limpieza antes y después del evento", "Productos para baños", "1 persona encargada para apoyo y supervisión"],
       nota: "Horario límite: 10:00 PM.",
       direccion: "Pedro Moreno 243 A, Zona Centro, León de los Aldama, Gto.",
