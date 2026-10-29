@@ -282,7 +282,7 @@
           return '<div><p class="who">' + esc(b[0]) + '</p><p class="pr num">' + money(b[1]) + ' <small>por persona</small></p><ul>' + b[2].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
         }).join("") + '</div></section>';
     }
-    var head = d.adulto ? '<a class="back" href="#adultos">← Para adultos</a>'
+    var head = d.adulto ? '<a class="back" href="#adultos">← Eventos sociales y empresariales</a>'
       : '<a class="back" href="#infantiles">← Destinos infantiles</a><div class="banner"><img src="' + d.banner + '" alt="' + esc(d.nombre) + '"></div>';
     var title = '<div class="titlerow">' + (d.logo ? '<div class="lg" style="background:' + d.bg + '"><img src="' + d.logo + '" alt="Logo de ' + esc(d.nombre) + '"></div>' : '<div class="lg ini" style="background:' + d.bg + '">' + esc(d.ini || d.nombre.charAt(0)) + '</div>') + '<div><h1>' + esc(d.nombre) + '</h1><p class="tag" style="margin-top:4px">' + esc(d.tag) + '</p></div></div>';
     if (d.apertura) title += '<p class="aviso">Estamos próximos a aperturar, ¡mantente pendiente!</p>';
