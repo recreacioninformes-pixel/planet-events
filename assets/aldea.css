@@ -1,0 +1,37 @@
+/* Pop-up La Aldea Navideña */
+.aldea-ov { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 16px; background: rgba(28,24,20,.72); opacity: 0; transition: opacity .35s ease; }
+.aldea-ov.on { opacity: 1; }
+.aldea-ov canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.aldea { position: relative; z-index: 1; width: min(480px, 100%); max-height: calc(100svh - 32px); overflow: auto; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 24px; box-shadow: 6px 7px 0 var(--ink); transform: translateY(18px) rotate(-.6deg); transition: transform .5s cubic-bezier(.2,.8,.3,1.2); }
+.aldea-ov.on .aldea { transform: none; }
+.aldea .scene { position: relative; background: #2F4A3D; border-bottom: 1.5px solid var(--ink); border-radius: 22px 22px 0 0; overflow: hidden; aspect-ratio: 16 / 8; }
+.aldea .scene svg { position: absolute; inset: auto 0 0 0; width: 100%; height: auto; }
+.aldea .scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.aldea .x { position: absolute; top: 10px; right: 10px; z-index: 3; width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--paper); cursor: pointer; font-size: 20px; line-height: 1; display: grid; place-items: center; }
+.aldea .body { padding: 20px 22px 22px; text-align: center; }
+.aldea .kicker { display: inline-block; font: 600 12px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; background: #B23A2E; color: #fff; border: 1.5px solid var(--ink); border-radius: 999px; padding: 6px 12px; }
+.aldea h2 { font-size: clamp(30px, 7vw, 40px); margin-top: 12px; }
+.aldea h2 em { font-style: normal; color: #B23A2E; }
+.aldea .al-where { margin-top: 6px; color: var(--muted); }
+.aldea .al-where b { color: var(--ink); }
+.aldea .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+.aldea .facts div { border: 1.5px solid var(--ink); border-radius: 14px; padding: 10px 6px; background: var(--bg); }
+.aldea .facts small { display: block; font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.aldea .facts strong { font: 700 17px/1.2 var(--font-display); }
+.aldea .incl { margin-top: 12px; font-size: 14.5px; color: var(--muted); }
+.aldea .promo { margin-top: 12px; background: #FBEFC9; border: 1.5px dashed var(--ink); border-radius: 12px; padding: 8px 10px; font-size: 14px; }
+.aldea .acts { display: flex; gap: 10px; margin-top: 16px; }
+.aldea .acts a { flex: 1; text-decoration: none; text-align: center; font: 600 15px/1 var(--font-display); padding: 14px 10px; border-radius: 999px; border: 1.5px solid var(--ink); }
+.aldea .acts .main { background: #B23A2E; color: #fff; box-shadow: 3px 4px 0 var(--ink); }
+.aldea .acts .sec { background: var(--paper); }
+.aldea .later { margin-top: 12px; background: none; border: 0; color: var(--muted); text-decoration: underline; cursor: pointer; font-size: 13.5px; }
+@media (max-width: 420px) { .aldea .facts strong { font-size: 15px; } .aldea .acts { flex-direction: column; } }
+@media (prefers-reduced-motion: reduce) { .aldea, .aldea-ov { transition: none; } }
+.aldea h2 { margin: 12px 0 0 !important; padding: 0 !important; }
+.aldea .al-where { margin: 6px 0 0 !important; }
+@media (max-width: 480px) { .aldea .scene { aspect-ratio: 16 / 7; } .aldea .body { padding: 16px 16px 18px; } .aldea .facts strong { font-size: 14px; white-space: nowrap; } .aldea .facts div { padding: 9px 4px; } .aldea .incl, .aldea .promo { font-size: 13.5px; } }
+
+.al-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.aldea .al-logo { display: block; width: min(250px, 66%); height: auto; margin: 10px auto 0; mix-blend-mode: multiply; }
+.aldea .scene { aspect-ratio: 16 / 6.5; }
+@media (max-width: 480px) { .aldea .scene { aspect-ratio: 16 / 6; } .aldea .al-logo { width: 58%; } }
