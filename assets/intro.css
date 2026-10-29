@@ -1,0 +1,76 @@
+/* Intro animada del inicio: sistema de planetas que gira con el scroll.
+   Todo va con prefijo "pi-" para no chocar con los estilos del sitio. */
+body { overflow-x: clip; }
+.pintro { position: relative; height: 650svh; margin-inline: calc(50% - 50vw); }
+.pi-stage { position: sticky; top: var(--hh, 0px); height: calc(100svh - var(--hh, 0px)); overflow: hidden; background: var(--bg); }
+
+.pi-stars { position: absolute; inset: 0; z-index: 0; }
+.pi-stars img { position: absolute; height: auto; animation: pi-tw 2.8s ease-in-out infinite; }
+@keyframes pi-tw { 50% { opacity: .3; transform: scale(.82) rotate(14deg); } }
+.pi-deco { position: absolute; z-index: 2; height: auto; pointer-events: none; will-change: transform; }
+.pi-luna { left: 3%; top: 6%; width: 96px; }
+.pi-saturno { right: 3%; bottom: 9%; width: 150px; }
+.pi-astro { left: 0; top: 0; width: 150px; }
+
+.pi-sys { position: absolute; left: 62%; top: 52%; width: 0; height: 0; }
+.pi-sun { position: absolute; width: var(--sun); height: var(--sun); margin: calc(var(--sun) / -2) 0 0 calc(var(--sun) / -2); z-index: 10; }
+.pi-sun > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(4px 5px 0 var(--ink)); will-change: transform; }
+.pi-badge { position: absolute; left: 51.5%; top: 49.7%; transform: translate(-50%, -50%); background: var(--paper); border: 1.5px solid var(--ink); border-radius: 999px; padding: 3.2% 4.5%; width: 30%; display: grid; place-items: center; box-shadow: 2px 3px 0 var(--ink); }
+.pi-badge img { width: 100%; height: auto; display: block; }
+.pi-orbit { position: absolute; border: 1.5px dashed var(--ink); border-radius: 50%; opacity: .45; z-index: 1; }
+.pi-pl { position: absolute; width: 140px; height: 140px; margin: -70px 0 0 -70px; border-radius: 50%; border: 1.5px solid var(--ink); overflow: hidden; background: var(--paper); box-shadow: 3px 4px 0 var(--ink); }
+.pi-pl img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pi-rocket { position: absolute; width: 74px; height: auto; margin: -37px 0 0 -37px; z-index: 30; will-change: transform; pointer-events: none; }
+
+.pi-head { position: absolute; z-index: 20; top: 0; bottom: 0; left: 6%; width: 44%; display: flex; flex-direction: column; justify-content: center; pointer-events: none; }
+.pi-head .pi-logo { display: inline-block; align-self: flex-start; animation: pi-write 2.2s cubic-bezier(.3,.6,.4,1) .25s both; }
+.pi-head .pi-logo img { display: block; height: min(16svh, 140px); width: auto; max-width: 86vw; }
+.pi-head .pi-title { font-family: var(--font-display); line-height: 1.1; text-wrap: balance; font-size: clamp(30px, 5vw, 58px); font-weight: 700; letter-spacing: -.025em; margin-top: 18px; max-width: 16ch; }
+.pi-hint { margin-top: 26px; font: 600 12px/1 var(--font-display); letter-spacing: .24em; text-transform: uppercase; color: var(--muted); display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.pi-hint span { display: inline-block; animation: pi-b 1.6s ease-in-out infinite; font-size: 18px; }
+.pi-fade { animation: pi-fade .7s ease-out both; }
+@keyframes pi-write { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+@keyframes pi-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes pi-b { 50% { transform: translateY(7px); } }
+
+.pi-card { position: absolute; z-index: 25; left: 6%; top: 50%; width: min(360px, calc(100% - 32px)); background: var(--paper); border: 1.5px solid var(--ink); border-radius: 22px; box-shadow: 5px 6px 0 var(--ink); padding: 18px; opacity: 0; pointer-events: none; transform: translateY(-44%); transition: opacity .35s, transform .45s cubic-bezier(.2,.8,.3,1.2); }
+.pi-card.on { opacity: 1; pointer-events: auto; transform: translateY(-50%); }
+.pi-card .row { display: flex; gap: 12px; align-items: center; }
+.pi-card .lg { width: 64px; height: 64px; flex: 0 0 64px; border-radius: 16px; border: 1.5px solid var(--ink); overflow: hidden; }
+.pi-card .lg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pi-card .k { font: 600 11.5px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.pi-card h2 { font-size: 26px; margin-top: 4px; }
+.pi-card p.t { margin-top: 10px; color: var(--muted); font-size: 15px; }
+.pi-card .btn { margin-top: 14px; }
+
+.pi-dots { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 30; display: flex; align-items: center; }
+.pi-dots i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--paper); transition: background .25s, transform .25s; }
+.pi-dots i.on { background: var(--ink); transform: scale(1.25); }
+.pi-dots b { width: 26px; height: 1.5px; background: var(--ink); opacity: .35; }
+.pi-skip { position: absolute; right: 16px; top: 14px; z-index: 30; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 999px; padding: 8px 14px; font: 600 13px/1 var(--font-display); text-decoration: none; color: var(--ink); }
+
+@media (max-width: 760px) {
+  .pi-sys { left: 50%; top: 34%; }
+  .pi-head { left: 0; width: 100%; padding: 0 20px 14svh; justify-content: flex-end; align-items: center; text-align: center; }
+  .pi-head .pi-logo { align-self: center; }
+  .pi-head .pi-logo img { height: 74px; }
+  .pi-hint { align-items: center; }
+  .pi-card { left: 16px; right: 16px; width: auto; top: auto; bottom: 86px; transform: translateY(20px); }
+  .pi-card.on { transform: none; }
+  .pi-pl { width: 84px; height: 84px; margin: -42px 0 0 -42px; }
+  .pi-rocket { width: 50px; margin: -25px 0 0 -25px; }
+  .pi-luna { width: 58px; top: 3%; }
+  .pi-saturno { width: 84px; right: 2%; bottom: auto; top: 3%; }
+  .pi-astro { width: 84px; }
+  .pi-dots { left: 16px; transform: none; bottom: 26px; }
+  .pi-dots b { width: 16px; }
+}
+/* Quien pide menos movimiento ve directo la portada normal */
+@media (prefers-reduced-motion: reduce) { .pintro { display: none; } }
+
+/* Ilustración nueva también en la portada normal */
+.art img.art-nueva { border-radius: 0; filter: drop-shadow(4px 5px 0 var(--ink)); }
+.art .go.go-nueva { left: 30.5%; top: 44.7%; width: 42%; height: 10%; font-size: 3.6cqw; white-space: nowrap; }
+
+/* Al saltar la intro, la portada no queda debajo del menú */
+#inicio { scroll-margin-top: calc(var(--hh, 0px) + 8px); }

@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/sitio.css">
 <link rel="stylesheet" href="/assets/aldea.css">
+<link rel="stylesheet" href="/assets/intro.css">
+<link rel="preload" as="image" href="/assets/intro/planeta.webp">
 
 </head>
 <body>
@@ -37,6 +39,9 @@
 
 <!-- ============ INICIO ============ -->
 <div id="home" class="wrap">
+  <!-- Intro animada (se arma con assets/intro.js) -->
+  <section class="pintro" id="pintro" aria-label="Destinos de Planet Events"></section>
+
   <div class="hero" id="inicio">
     <div>
       <p class="eyebrow">
@@ -51,8 +56,8 @@
       <p class="facts"><span><b>5 horas</b> de evento</span><span><b>1 hora</b> de montaje y 1 de desmontaje</span><span><b>50%</b> de anticipo para apartar</span></p>
     </div>
     <div class="art">
-      <img src="assets/planeta.jpg" alt="Planeta ilustrado con una granja, dinosaurios, selva y colinas" width="1100" height="924">
-      <a class="go" href="#infantiles">Conoce los destinos</a>
+      <img class="art-nueva" src="assets/intro/planeta.webp" alt="Planeta ilustrado con granja, dinosaurios, fútbol, selva y espacio" width="1100" height="1096">
+      <a class="go go-nueva" href="#infantiles">Conoce los destinos</a>
     </div>
   </div>
 
@@ -118,6 +123,7 @@
 
 <script src="/assets/sitio.js"></script>
 <script src="/assets/aldea.js"></script>
+<script src="/assets/intro.js"></script>
 
 </body>
 </html>
