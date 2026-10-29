@@ -66,7 +66,7 @@
       }
     },
     {
-      id: "dino", apertura: true, logo: "assets/logos/dino-icon.jpg", banner: "assets/logos/dino-banner.jpg", bg: "rgb(252,243,234)", color: "--c-dino", nombre: "Dinoplaneta", tag: "Salón de fiestas infantiles",
+      id: "dino", apertura: true, video: ["assets/video/dino.mp4", "assets/video/dino.jpg"], logo: "assets/logos/dino-icon.jpg", banner: "assets/logos/dino-banner.jpg", bg: "rgb(252,243,234)", color: "--c-dino", nombre: "Dinoplaneta", tag: "Salón de fiestas infantiles",
       descripcion: "Un espacio temático de dinosaurios donde los niños viven experiencias únicas con juegos, convivencia familiar y actividades educativas. Un lugar donde aprender y divertirse van de la mano.",
       capacidad: "Hasta 70 personas",
       galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
@@ -83,7 +83,7 @@
       }
     },
     {
-      id: "fe", apertura: true, logo: "assets/logos/fe-icon.jpg", banner: "assets/logos/fe-banner.jpg", bg: "rgb(1,11,36)", color: "--c-fe", nombre: "Fut Experience", tag: "Museo interactivo de fútbol y salón de fiestas",
+      id: "fe", apertura: true, video: ["assets/video/fe.mp4", "assets/video/fe.jpg"], logo: "assets/logos/fe-icon.jpg", banner: "assets/logos/fe-banner.jpg", bg: "rgb(1,11,36)", color: "--c-fe", nombre: "Fut Experience", tag: "Museo interactivo de fútbol y salón de fiestas",
       descripcion: "Museo interactivo dedicado a la historia del fútbol, con enfoque especial en México, la Selección Mexicana y el fútbol de León. También funciona como salón de fiestas temático.",
       capacidad: "Hasta 70 personas",
       galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
@@ -116,7 +116,7 @@
       }
     },
     {
-      id: "sm", apertura: true, logo: "assets/logos/sm-icon.jpg", banner: "assets/logos/sm-banner.jpg", bg: "rgb(252,248,237)", color: "--c-sm", nombre: "Space Museum", tag: "Próximamente",
+      id: "sm", apertura: true, video: ["assets/video/sm.mp4", "assets/video/sm.jpg"], logo: "assets/logos/sm-icon.jpg", banner: "assets/logos/sm-banner.jpg", bg: "rgb(252,248,237)", color: "--c-sm", nombre: "Space Museum", tag: "Próximamente",
       proximamente: true,                                                              // POR DEFINIR: descripción, capacidad, precios, qué incluye, dirección y visitas escolares
       descripcion: "Muy pronto compartiremos toda la información de este destino: precios, qué incluye y visitas escolares.",
       capacidad: "", galeria: [], precios: [], incluye: [], nota: "", direccion: null, escolar: null
@@ -227,10 +227,15 @@
       return '<button type="button" data-i="' + i + '" aria-label="Ver foto ' + (i + 1) + ': ' + esc(g[1]) + '"' + (i === 0 ? ' aria-current="true"' : "") + '><img src="' + g[0].replace(/([^\/]+)$/, "t/$1") + '" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'' + g[0] + '\'"></button>';
     }).join("");
     var gallery;
-    if (d.galeria.length) {
+    var vid = d.video ? '<div class="main vid"><video id="dest-video" src="' + d.video[0] + '" poster="' + d.video[1] + '" muted loop playsinline preload="metadata" aria-label="Video de ' + esc(d.nombre) + '"></video>' +
+      '<button class="snd" type="button" id="vid-snd" aria-pressed="false">🔇 Activar sonido</button></div>' : "";
+    if (d.video && !d.galeria.length) {
+      gallery = vid;
+    } else if (d.galeria.length) {
       gallery = '<div class="main"' + (d.galAspect ? ' style="aspect-ratio:' + d.galAspect + '"' : '') + '><img id="gal-img" src="' + d.galeria[0][0] + '" alt="' + esc(d.galeria[0][1]) + '">' +
         '<button class="nav-btn prev" type="button" aria-label="Foto anterior">‹</button><button class="nav-btn next" type="button" aria-label="Foto siguiente">›</button>' +
         '<span class="count num" id="gal-count">1 / ' + d.galeria.length + '</span></div><div class="thumbs">' + thumbs + '</div>';
+      if (vid) gallery = vid + '<div style="height:16px"></div>' + gallery;
     } else {
       gallery = '<div class="main"><div class="ph"><span>Próximamente fotografías</span></div></div><div class="thumbs ph-row"><div class="ph"><span>Próximamente</span></div><div class="ph"><span>Próximamente</span></div><div class="ph"><span>Próximamente</span></div><div class="ph"><span>Próximamente</span></div></div>';
     }
@@ -313,7 +318,18 @@
       '<div style="height:48px"></div>';
   }
 
+  function wireVideo() {
+    var v = document.getElementById("dest-video"), b = document.getElementById("vid-snd");
+    if (!v) return;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }); }, { threshold: 0.35 }).observe(v);
+    } else { v.autoplay = true; v.play(); }
+    function sync() { b.textContent = v.muted ? "🔇 Activar sonido" : "🔊 Silenciar"; b.setAttribute("aria-pressed", String(!v.muted)); }
+    b.addEventListener("click", function () { v.muted = !v.muted; if (!v.muted) { v.play(); } sync(); });
+    v.addEventListener("click", function () { if (v.paused) v.play(); else v.pause(); });
+  }
   function wireGallery(d) {
+    wireVideo();
     if (!d.galeria.length) return;
     var idx = 0, n = d.galeria.length;
     var img = document.getElementById("gal-img"), count = document.getElementById("gal-count");
