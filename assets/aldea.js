@@ -23,7 +23,7 @@
     '<div class="body"><span class="kicker">✦ ¡Llega a León! ✦</span>' +
     '<h2 id="aldea-t" class="al-sr">¡Llega La Aldea Navideña!</h2><img class="al-logo" src="/assets/aldea-logo.jpg" alt="La Aldea Navideña" width="640" height="572">' +
     '<p class="al-where">Este año, ahora en <b>Granja Ventura</b> · León, Gto.</p>' +
-    '<div class="facts"><div><small>Fechas</small><strong>30 nov – 6 ene</strong></div><div><small>Horario</small><strong>L a V · 9 a 2</strong></div><div><small>Entrada</small><strong class="num">$100</strong></div></div>' +
+    '<div class="facts"><div><small>Fechas</small><strong>27 nov – 6 ene</strong></div><div><small>Horario</small><strong>L a V · 9 a 2</strong></div><div><small>Entrada</small><strong class="num">$100</strong></div></div>' +
     '<p class="incl">Recorridos escolares · Shows con duendes · Santa y los Reyes Magos</p>' +
     '<p class="promo"><b>Grupos:</b> pagan 9 y entran 10</p>' +
     '<div class="acts"><a class="main" href="' + wa + '" target="_blank" rel="noopener">Reservar recorrido</a>' + (enGranja ? '<a class="sec" href="#" data-close>Ver la granja</a>' : '<a class="sec" href="/granjaventura/">Ver Granja Ventura</a>') + '</div>' +
