@@ -4,7 +4,7 @@
   var KEY = "aldea-2026-visto";
   var enGranja = location.pathname.indexOf("/granjaventura") === 0;
   try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}
-  var wa = "https://wa.me/524772858643?text=" + encodeURIComponent("Hola, quiero reservar un recorrido en La Aldea Navideña de Granja Ventura.");
+  var wa = "mailto:ventas@planeteventsleon.com?subject=Reservaci%C3%B3n%20de%20recorrido%20escolar%20%E2%80%93%20Aldea%20Navide%C3%B1a&body=Hola%2C%20queremos%20reservar%20un%20recorrido%20escolar%20en%20La%20Aldea%20Navide%C3%B1a.%0D%0A%0D%0AEscuela%3A%20%0D%0AFecha%20que%20nos%20interesa%3A%20%0D%0AN%C3%BAmero%20de%20alumnos%3A%20%0D%0AGrado%28s%29%3A%20%0D%0ANombre%20y%20tel%C3%A9fono%20o%20WhatsApp%20de%20contacto%3A%20%0D%0A";
   var pine = function (x, y, s) { return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')"><path d="M0 -60 L-16 -34 L-8 -34 L-24 -10 L-12 -10 L-30 16 L30 16 L12 -10 L24 -10 L8 -34 L16 -34 Z" fill="#3E5C4B"/><path d="M0 -60 L-7 -48 L7 -48 Z M-16 -34 L-4 -38 L6 -34 L16 -34 M-24 -10 L-6 -14 L10 -10 L24 -10 M-30 16 L-8 11 L12 16 L30 16" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><rect x="-5" y="16" width="10" height="12" fill="#6B4A2F"/></g>'; };
   var house = function (x, w, h, c) { return '<g transform="translate(' + x + ' 0)"><rect x="0" y="' + (200 - h) + '" width="' + w + '" height="' + h + '" fill="' + c + '"/><path d="M-8 ' + (204 - h) + ' L' + (w / 2) + ' ' + (166 - h) + ' L' + (w + 8) + ' ' + (204 - h) + ' Z" fill="#fff"/><rect x="' + (w / 2 - 9) + '" y="' + (200 - h + 22) + '" width="18" height="18" rx="3" fill="#F6C65B"/><path d="M' + (w / 2) + ' ' + (222 - h) + ' v18 M' + (w / 2 - 9) + ' ' + (231 - h) + ' h18" stroke="#1C1814" stroke-width="1.5"/><rect x="' + (w / 2 - 8) + '" y="' + (176) + '" width="16" height="24" rx="8" fill="#1C1814" opacity=".85"/></g>'; };
   var svg = '<svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' +
@@ -26,7 +26,7 @@
     '<div class="facts"><div><small>Fechas</small><strong>27 nov – 6 ene</strong></div><div><small>Horario</small><strong>L a V · 9 a 2</strong></div><div><small>Entrada</small><strong class="num">$100</strong></div></div>' +
     '<p class="incl">Recorridos escolares · Shows con duendes · Santa y los Reyes Magos</p>' +
     '<p class="promo"><b>Grupos:</b> pagan 9 y entran 10</p>' +
-    '<div class="acts"><a class="main" href="' + wa + '" target="_blank" rel="noopener">Reservar recorrido</a>' + (enGranja ? '<a class="sec" href="#" data-close>Ver la granja</a>' : '<a class="sec" href="/granjaventura/">Ver Granja Ventura</a>') + '</div>' +
+    '<div class="acts"><a class="main" href="' + wa + '">Reservar recorrido</a><a class="sec" href="/aldea-navidena-recorridos/">Ver recorridos escolares</a>' + '</div>' +
     '<button class="later" type="button">Ahora no, gracias</button></div></div>';
   function close() { ov.classList.remove("on"); try { sessionStorage.setItem(KEY, "1"); } catch (e) {} setTimeout(function () { ov.remove(); }, 350); stop = true; }
   var stop = false;
