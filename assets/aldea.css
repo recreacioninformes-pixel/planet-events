@@ -20,7 +20,7 @@
 .aldea .facts strong { font: 700 17px/1.2 var(--font-display); }
 .aldea .incl { margin-top: 12px; font-size: 14.5px; color: var(--muted); }
 .aldea .incl.al-esc { margin-top: 6px; font-size: 13.5px; }
-.aldea .incl b { color: var(--ink); }
+.aldea .incl b { color: var(--ink); display: inline; }
 .aldea .promo { margin-top: 12px; background: #FBEFC9; border: 1.5px dashed var(--ink); border-radius: 12px; padding: 8px 10px; font-size: 14px; }
 .aldea .acts { display: flex; gap: 10px; margin-top: 16px; }
 .aldea .acts a { flex: 1; text-decoration: none; text-align: center; font: 600 15px/1 var(--font-display); padding: 14px 10px; border-radius: 999px; border: 1.5px solid var(--ink); }
