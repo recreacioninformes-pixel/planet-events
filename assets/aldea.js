@@ -5,6 +5,9 @@
   var enGranja = location.pathname.indexOf("/granjaventura") === 0;
   try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}
   var wa = "mailto:ventas@planeteventsleon.com?subject=Reservaci%C3%B3n%20de%20recorrido%20escolar%20%E2%80%93%20Aldea%20Navide%C3%B1a&body=Hola%2C%20queremos%20reservar%20un%20recorrido%20escolar%20en%20La%20Aldea%20Navide%C3%B1a.%0D%0A%0D%0AEscuela%3A%20%0D%0AFecha%20que%20nos%20interesa%3A%20%0D%0AN%C3%BAmero%20de%20alumnos%3A%20%0D%0AGrado%28s%29%3A%20%0D%0ANombre%20y%20tel%C3%A9fono%20o%20WhatsApp%20de%20contacto%3A%20%0D%0A";
+  var waPub = "https://wa.me/524772858643?text=" + encodeURIComponent("Hola, quiero entradas para La Aldea Navideña en Granja Ventura.");
+  // La preventa ($100 por persona) termina el 27 de noviembre de 2026.
+  var preventa = new Date() < new Date("2026-11-28T00:00:00-06:00");
   var pine = function (x, y, s) { return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')"><path d="M0 -60 L-16 -34 L-8 -34 L-24 -10 L-12 -10 L-30 16 L30 16 L12 -10 L24 -10 L8 -34 L16 -34 Z" fill="#3E5C4B"/><path d="M0 -60 L-7 -48 L7 -48 Z M-16 -34 L-4 -38 L6 -34 L16 -34 M-24 -10 L-6 -14 L10 -10 L24 -10 M-30 16 L-8 11 L12 16 L30 16" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><rect x="-5" y="16" width="10" height="12" fill="#6B4A2F"/></g>'; };
   var house = function (x, w, h, c) { return '<g transform="translate(' + x + ' 0)"><rect x="0" y="' + (200 - h) + '" width="' + w + '" height="' + h + '" fill="' + c + '"/><path d="M-8 ' + (204 - h) + ' L' + (w / 2) + ' ' + (166 - h) + ' L' + (w + 8) + ' ' + (204 - h) + ' Z" fill="#fff"/><rect x="' + (w / 2 - 9) + '" y="' + (200 - h + 22) + '" width="18" height="18" rx="3" fill="#F6C65B"/><path d="M' + (w / 2) + ' ' + (222 - h) + ' v18 M' + (w / 2 - 9) + ' ' + (231 - h) + ' h18" stroke="#1C1814" stroke-width="1.5"/><rect x="' + (w / 2 - 8) + '" y="' + (176) + '" width="16" height="24" rx="8" fill="#1C1814" opacity=".85"/></g>'; };
   var svg = '<svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' +
@@ -23,10 +26,11 @@
     '<div class="body"><span class="kicker">✦ ¡Llega a León! ✦</span>' +
     '<h2 id="aldea-t" class="al-sr">¡Llega La Aldea Navideña!</h2><img class="al-logo" src="/assets/aldea-logo.jpg" alt="La Aldea Navideña" width="640" height="572">' +
     '<p class="al-where">Este año, ahora en <b>Granja Ventura</b> · León, Gto.</p>' +
-    '<div class="facts"><div><small>Fechas</small><strong>27 nov – 6 ene</strong></div><div><small>Horario</small><strong>L a V · 9 a 2</strong></div><div><small>Entrada</small><strong class="num">$100</strong></div></div>' +
-    '<p class="incl">Recorridos escolares · Shows con duendes · Santa y los Reyes Magos</p>' +
-    '<p class="promo"><b>Grupos:</b> pagan 9 y entran 10</p>' +
-    '<div class="acts"><a class="main" href="' + wa + '">Reservar recorrido</a><a class="sec" href="/aldea-navidena-recorridos/">Ver recorridos escolares</a>' + '</div>' +
+    '<div class="facts"><div><small>Fechas</small><strong>27 nov – 6 ene</strong></div><div><small>Horario</small><strong>Jue a dom<br>4:30 a 8 pm</strong></div><div><small>Entrada</small><strong><span class="num">Niño $200</span><br><span class="num">Adulto $100</span></strong></div></div>' +
+    (preventa ? '<p class="promo"><b>Preventa:</b> $100 por persona hasta el 27 de noviembre</p>' : '') +
+    '<p class="incl">Recorrido de 2 horas aprox. · Shows con duendes · Santa y los Reyes Magos</p>' +
+    '<p class="incl al-esc"><b>Escuelas:</b> lunes a viernes de 9 a 2 · $100 por alumno, pagan 9 y entran 10 · recorrido de 4 horas aprox.</p>' +
+    '<div class="acts"><a class="main" href="' + waPub + '" target="_blank" rel="noopener">' + (preventa ? 'Aparta en preventa' : 'Quiero entradas') + '</a><a class="sec" href="/aldea-navidena-recorridos/">Recorridos escolares</a>' + '</div>' +
     '<button class="later" type="button">Ahora no, gracias</button></div></div>';
   function close() { ov.classList.remove("on"); try { sessionStorage.setItem(KEY, "1"); } catch (e) {} setTimeout(function () { ov.remove(); }, 350); stop = true; }
   var stop = false;
