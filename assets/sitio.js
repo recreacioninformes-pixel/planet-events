@@ -2,16 +2,7 @@
      DATOS DEL SITIO. Para actualizar precios, textos o fotos, edita solo este bloque.
      Las fotos viven en la carpeta assets/<destino>/ y se agregan a "galeria".
      --------------------------------------------------------------- */
-  /* GOOGLE ADS / MEDICIÓN
-     1. Pega aquí el ID de tu etiqueta de Google (Google Ads → Herramientas → Etiqueta de Google), p. ej. "AW-123456789".
-     2. Si creas acciones de conversión en Google Ads, pega su "send_to" (p. ej. "AW-123456789/AbCdEf") en cada una.
-     Mientras esté vacío, la página funciona igual y no mide nada. */
-  var GOOGLE_TAG_ID = "";
-  var CONVERSIONES = {
-    whatsapp: "",   // clic en cualquier botón de WhatsApp
-    telefono: "",   // clic en el teléfono
-    boletos: ""     // clic en comprar boletos (TicketCity)
-  };
+  /* La medición de Google Ads vive en assets/medicion.js */
 
   var CONTACTO = {
     whatsapp: "524772858643",       // WhatsApp de Planet Events (agente Diego)
@@ -400,24 +391,3 @@
     document.body.appendChild(b);
   })();
 
-  /* ---------- Medición para Google Ads ---------- */
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  if (GOOGLE_TAG_ID) {
-    var gs = document.createElement("script"); gs.async = true;
-    gs.src = "https://www.googletagmanager.com/gtag/js?id=" + GOOGLE_TAG_ID; document.head.appendChild(gs);
-    gtag("js", new Date()); gtag("config", GOOGLE_TAG_ID);
-  }
-  function medir(tipo, etiqueta) {
-    if (!GOOGLE_TAG_ID) return;
-    gtag("event", "clic_" + tipo, { destino: current || "inicio", boton: etiqueta });
-    if (CONVERSIONES[tipo]) gtag("event", "conversion", { send_to: CONVERSIONES[tipo] });
-  }
-  document.addEventListener("click", function (ev) {
-    var a = ev.target.closest ? ev.target.closest("a[href]") : null;
-    if (!a) return;
-    var h = a.href, txt = (a.textContent || "").trim().slice(0, 60);
-    if (h.indexOf("wa.me/") > -1) medir("whatsapp", txt);
-    else if (h.indexOf("tel:") === 0) medir("telefono", txt);
-    else if (h.indexOf("ticketcity") > -1) medir("boletos", txt);
-  }, true);
