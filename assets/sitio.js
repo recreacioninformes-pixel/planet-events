@@ -17,7 +17,7 @@
   var PRECIOS_RENTA = [["Lunes a jueves", 4000], ["Viernes y domingo", 5000], ["Sábado", 6000]];
 
   /* Precio de visitas escolares: igual en todos los destinos infantiles */
-  var PRECIOS_ESCOLARES = [["Escuela pública", 50, "Maestros no pagan"], ["Escuela privada", 70, "Maestros no pagan"]];
+  var PRECIOS_ESCOLARES = [["Boleto escolar", 90, "Viernes por la mañana · maestros gratis, 1 por cada 10 niños"]];
 
   var DESTINOS = [
     {
@@ -32,7 +32,7 @@
       mapa: "Granja Ventura, Blvd. Ibarrilla 96, León, Guanajuato",
       visita: {
         titulo: "Visita a la granja",
-        horario: "Viernes de 2:00 p.m. a 6:00 p.m. · Sábados y domingos de 9:00 a.m. a 6:00 p.m.",
+        horario: "Solo sábados y domingos, de 9:00 a.m. a 6:00 p.m.",
         reservacion: { dias: "Lunes a jueves", texto: "Previa reservación", nota: "Agenda tu visita con anticipación" },
         entrada: { precio: 100, nota: "Acceso a la granja" },
         buffet: { dias: "Sábados y domingos, de 10:00 a.m. a 4:30 p.m.", adulto: 250, nino: 150, nota: "Incluye acceso a la granja" },
