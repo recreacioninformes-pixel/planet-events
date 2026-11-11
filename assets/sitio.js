@@ -60,7 +60,8 @@
       id: "dino", apertura: true, video: ["assets/video/dino.mp4", "assets/video/dino.jpg"], logo: "assets/logos/dino-icon.jpg", banner: "assets/logos/dino-banner.jpg", bg: "rgb(252,243,234)", color: "--c-dino", nombre: "Dinoplaneta", tag: "Salón de fiestas infantiles",
       descripcion: "Un espacio temático de dinosaurios donde los niños viven experiencias únicas con juegos, convivencia familiar y actividades educativas. Un lugar donde aprender y divertirse van de la mano.",
       capacidad: "Hasta 70 personas",
-      galeria: [],                                                                // FOTOS: agregar aquí ["assets/<destino>/foto1.jpg", "descripción"]
+      galeria: [["assets/dino/1.jpg", "Área de fiestas techada con mesas para niños"], ["assets/dino/2.jpg", "Tiranosaurio y braquiosaurio a escala"], ["assets/dino/3.jpg", "Dinosaurios entre las mesas"], ["assets/dino/4.jpg", "Mural educativo: conoce a nuestros dinosaurios"], ["assets/dino/5.jpg", "Inflable de dinosaurios"]], galAspect: "3 / 4",
+      galNota: "Fotografías del avance de la obra (85%). No representan el resultado final: Dinoplaneta sigue en construcción y el espacio terminado lucirá aún mejor.",
       precios: PRECIOS_RENTA,
       incluye: ["Valet parking y estacionamiento", "Limpieza del espacio", "Productos y consumibles en baños", "Personal de seguridad", "Personal de atención y limpieza en baños", "Mobiliario para 70 personas", "5 horas de evento, 1 de montaje y 1 de desmontaje"],
       nota: "",
@@ -226,6 +227,7 @@
       gallery = '<div class="main"' + (d.galAspect ? ' style="aspect-ratio:' + d.galAspect + '"' : '') + '><img id="gal-img" src="' + d.galeria[0][0] + '" alt="' + esc(d.galeria[0][1]) + '">' +
         '<button class="nav-btn prev" type="button" aria-label="Foto anterior">‹</button><button class="nav-btn next" type="button" aria-label="Foto siguiente">›</button>' +
         '<span class="count num" id="gal-count">1 / ' + d.galeria.length + '</span></div><div class="thumbs">' + thumbs + '</div>';
+      if (d.galNota) gallery += '<p class="gal-nota">' + esc(d.galNota) + '</p>';
       if (vid) gallery = vid + '<div style="height:16px"></div>' + gallery;
     } else {
       gallery = '<div class="main"><div class="ph"><span>Próximamente fotografías</span></div></div><div class="thumbs ph-row"><div class="ph"><span>Próximamente</span></div><div class="ph"><span>Próximamente</span></div><div class="ph"><span>Próximamente</span></div><div class="ph"><span>Próximamente</span></div></div>';
