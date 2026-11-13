@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/sitio.css?v=20261110b">
-<link rel="stylesheet" href="/assets/aldea.css?v=20261109b">
+<link rel="stylesheet" href="/assets/aldea.css?v=20261113">
 <link rel="stylesheet" href="/assets/intro.css">
 <link rel="preload" as="image" href="/assets/intro/planeta.webp">
 
@@ -28,6 +28,7 @@
     <a class="brand" href="#inicio" aria-label="Planet Events, inicio"><img src="assets/logo.png" alt="Planet Events"></a>
     <nav aria-label="Secciones">
       <a href="#inicio">Inicio</a>
+      <a href="#aldea">Aldea Navideña</a>
       <a href="#infantiles">Destinos infantiles</a>
       <a href="#adultos">Eventos sociales y empresariales</a>
       <a href="#servicios">Servicios</a>
@@ -39,6 +40,34 @@
 
 <!-- ============ INICIO ============ -->
 <div id="home" class="wrap">
+  <!-- ============ LA ALDEA NAVIDEÑA (temporal) ============
+       Se quita sola al terminar el 6 de enero de 2027 (hora de León). Para quitarla antes, borra este bloque. -->
+  <section class="al-band" id="aldea" aria-labelledby="t-aldea" data-hasta="2027-01-07T00:00:00-06:00">
+    <div class="alb-logo"><img src="/assets/aldea-logo.jpg" alt="" width="640" height="572"></div>
+    <div class="alb-txt">
+      <span class="alb-kick">✦ Temporada navideña · Granja Ventura ✦</span>
+      <h2 id="t-aldea">¡La Aldea Navideña llega a León!</h2>
+      <p>Santa, los Reyes Magos, la fábrica de juguetes y los duendes, del <b>27 de noviembre al 6 de enero</b>.</p>
+      <ul class="alb-facts">
+        <li><small>Familias</small><b>Jue a dom · 4:30 a 8 pm</b><span>Niño $200 · adulto $100</span></li>
+        <li><small>Escuelas</small><b>Lun a vie · 9 a 2</b><span>$100 por alumno · pagan 9, entran 10</span></li>
+      </ul>
+      <p class="alb-pre" data-preventa-hasta="2026-11-28T00:00:00-06:00"><b>Preventa:</b> $100 por persona hasta el 27 de noviembre.</p>
+      <div class="alb-cta">
+        <a class="btn alb-main" href="/aldea-navidena-recorridos/?tipo=publico#reservar">Reservar para mi familia</a>
+        <a class="btn alb-sec" href="/aldea-navidena-recorridos/#reservar">Reservar para mi escuela</a>
+      </div>
+    </div>
+  </section>
+  <script>
+    (function () {
+      var b = document.getElementById("aldea"), n = new Date();
+      if (n >= new Date(b.getAttribute("data-hasta"))) { b.remove(); var l = document.querySelector('a[href="#aldea"]'); if (l) l.remove(); return; }
+      var p = b.querySelector("[data-preventa-hasta]");
+      if (p && n >= new Date(p.getAttribute("data-preventa-hasta"))) p.remove();
+    })();
+  </script>
+
   <!-- Intro animada (se arma con assets/intro.js) -->
   <section class="pintro" id="pintro" aria-label="Destinos de Planet Events"></section>
 
