@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La Aldea Navideña | Recorridos escolares en León · Planet Events</title>
+<title>La Aldea Navideña | Recorridos escolares y público en general en León · Planet Events</title>
 <meta name="description" content="Recorridos escolares a La Aldea Navideña en Granja Ventura, León, Gto. Del 27 de noviembre al 6 de enero, lunes a viernes de 9:00 a 2:00. Recorrido de 4 horas aprox. $100 por alumno, en grupo pagan 9 y entran 10.">
 <link rel="canonical" href="https://planeteventsleon.com/aldea-navidena-recorridos/">
 <link rel="icon" href="/assets/logos/gv-icon.jpg">
@@ -52,14 +52,43 @@
   th { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
   td:last-child, th:last-child { text-align: right; }
   tr:last-child td { border-bottom: 0; }
-  .book { margin-block: 56px 24px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; background: var(--xmas); color: #fff; border: 1.5px solid var(--ink); border-radius: 26px; padding: 36px; box-shadow: 6px 6px 0 var(--ink); }
+  .book { margin-block: 56px 24px; display: grid; grid-template-columns: .85fr 1.15fr; gap: 32px; align-items: start; background: var(--xmas); color: #fff; border: 1.5px solid var(--ink); border-radius: 26px; padding: 36px; box-shadow: 6px 6px 0 var(--ink); scroll-margin-top: 80px; }
   .book h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; }
-  .book p { margin-top: 10px; opacity: .95; }
-  .book ul { margin: 14px 0 0; padding-left: 20px; }
-  .book .btn { background: #F6C65B; color: var(--ink); border-color: var(--ink); width: 100%; font-size: 16px; padding: 18px 24px; }
-  .book .btn-alt { margin-top: 12px; background: transparent; color: #fff; border-color: #fff; }
-  .book .mail { margin-top: 12px; font-size: 14.5px; text-align: center; }
+  .book-info p { margin-top: 12px; opacity: .95; }
+  .book .mail { margin-top: 18px; font-size: 14.5px; }
   .book .mail a { color: #fff; font-weight: 600; }
+  .rf, .rf-ok { background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink); border-radius: 20px; padding: 22px; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: var(--band); border: 1.5px solid var(--ink); border-radius: 999px; }
+  .seg button { border: 0; background: transparent; border-radius: 999px; padding: 10px 12px; font-weight: 600; cursor: pointer; transition: background-color .18s ease-out, color .18s ease-out; }
+  .seg button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+  .seg button:active { transform: scale(.97); }
+  .rf-grid { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 14px; }
+  .rf-grid .full { grid-column: 1 / -1; }
+  .rf label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; }
+  .rf label small { font-weight: 400; color: var(--muted); }
+  .rf input, .rf select, .rf textarea { font: inherit; font-weight: 400; font-size: 16px; color: var(--ink); background: #fff; border: 1.5px solid var(--ink); border-radius: 12px; padding: 11px 12px; width: 100%; min-height: 46px; transition: box-shadow .15s ease-out; }
+  .rf textarea { resize: vertical; min-height: 64px; }
+  .rf input:focus, .rf select:focus, .rf textarea:focus { outline: none; box-shadow: 0 0 0 3px #F6C65B; }
+  .rf [aria-invalid="true"] { border-color: var(--xmas); box-shadow: 0 0 0 3px rgba(178, 58, 46, .18); }
+  .rf .chk { flex-direction: row; align-items: center; gap: 10px; font-weight: 500; }
+  .rf .chk input { width: 20px; min-height: 20px; height: 20px; accent-color: var(--xmas); flex: none; }
+  .rf .hint { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+  .rf .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .rf .est { margin-top: 16px; font-size: 15px; min-height: 1.5em; font-variant-numeric: tabular-nums; }
+  .rf .err { margin-top: 10px; color: var(--xmas); font-weight: 600; font-size: 14.5px; }
+  .rf-send { margin-top: 14px; width: 100%; background: var(--xmas); color: #fff; border-color: var(--ink); font-size: 16px; padding: 16px 24px; box-shadow: 0 3px 0 var(--ink); transition: transform .12s ease-out, opacity .15s ease-out; }
+  .rf-send:active { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 var(--ink); }
+  .rf-send[disabled] { opacity: .65; cursor: progress; }
+  .rf .fine { margin-top: 10px; font-size: 12.5px; color: var(--muted); text-align: center; }
+  .rf-ok { text-align: center; padding-block: 36px; animation: okin .32s cubic-bezier(.23, 1, .32, 1); }
+  .rf-ok h3 { font-size: 24px; margin-top: 12px; }
+  .rf-ok p { margin-top: 8px; color: var(--muted); }
+  .rf-ok .ok-ico { display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--pine); color: #fff; font-size: 28px; font-weight: 700; }
+  .rf-ok .ok-wa { margin-top: 18px; background: var(--ink); color: var(--paper); }
+  .rf-ok .ok-otra { display: block; margin: 14px auto 0; background: none; border: 0; text-decoration: underline; cursor: pointer; color: var(--muted); }
+  @keyframes okin { from { opacity: 0; transform: translateY(6px) scale(.98); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .rf-ok { animation: none; } }
+  [hidden] { display: none !important; }
   .where-box { margin-top: 10px; color: var(--muted); }
   @media (max-width: 860px) {
     .al-hero, .price, .book { grid-template-columns: 1fr; }
@@ -70,7 +99,9 @@
     .why { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .gal { grid-template-columns: 1fr 1fr; }
-    .book { padding: 26px; }
+    .book { padding: 20px; }
+    .rf { padding: 16px; }
+    .rf-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -94,8 +125,8 @@
       <h1>Santa y sus duendes se mudaron… <em>¡a León!</em></h1>
       <p class="lead">La Aldea Navideña es un montaje que combina teatro y parque de diversiones. Este año llega por primera vez a León, en Granja Ventura. Tus alumnos no solo la visitan: la viven. Recorren la Aldea, ayudan a los duendes en la fábrica de juguetes y conocen a Santa Claus y a los Reyes Magos.</p>
       <div class="cta">
-        <a class="btn btn-main" href="mailto:ventas@planeteventsleon.com?subject=Reservaci%C3%B3n%20de%20recorrido%20escolar%20%E2%80%93%20Aldea%20Navide%C3%B1a&amp;body=Hola%2C%20queremos%20reservar%20un%20recorrido%20escolar%20en%20La%20Aldea%20Navide%C3%B1a.%0D%0A%0D%0AEscuela%3A%20%0D%0AFecha%20que%20nos%20interesa%3A%20%0D%0AN%C3%BAmero%20de%20alumnos%3A%20%0D%0AGrado%28s%29%3A%20%0D%0ANombre%20y%20tel%C3%A9fono%20o%20WhatsApp%20de%20contacto%3A%20%0D%0A">Reservar por correo</a>
-        <a class="btn btn-ghost" href="mailto:ventas@planeteventsleon.com?subject=Agendar%20visita%20a%20Granja%20Ventura%20%E2%80%93%20Aldea%20Navide%C3%B1a&amp;body=Hola%2C%20nos%20gustar%C3%ADa%20agendar%20una%20cita%20para%20conocer%20el%20recorrido%20de%20La%20Aldea%20Navide%C3%B1a%20antes%20de%20reservar.%0D%0A%0D%0AEscuela%3A%20%0D%0AD%C3%ADa%20y%20hora%20en%20que%20nos%20gustar%C3%ADa%20ir%3A%20%0D%0AN%C3%BAmero%20aproximado%20de%20alumnos%3A%20%0D%0ANombre%20y%20tel%C3%A9fono%20o%20WhatsApp%20de%20contacto%3A%20%0D%0A">Agendar una visita previa</a>
+        <a class="btn btn-main" href="#reservar" data-ir="escuela">Reservar para mi escuela</a>
+        <a class="btn btn-ghost" href="#reservar" data-ir="publico">Reservar público en general</a>
       </div>
     </div>
     <figure><img src="/assets/aldea/fabrica.webp" alt="Alumnos armando peluches en la fábrica de juguetes de los duendes" width="683" height="683"></figure>
@@ -164,26 +195,82 @@
     </div>
     <p class="where-box"><b>Para apartar:</b> la fecha queda apartada con el 50% de anticipo.</p>
     <p class="where-box"><b>Lugar:</b> Granja Ventura · Blvd. Ibarrilla #96, atrás del Vivero Municipal, León, Gto.</p>
-    <p class="where-box"><b>¿Y con la familia?</b> La Aldea abre al público de jueves a domingo de 4:30 a 8:00 pm. Niño $200, adulto $100. Recorrido de 2 horas aprox.</p>
+    <p class="where-box"><b>¿Y con la familia?</b> La Aldea abre al público de jueves a domingo de 4:30 a 8:00 pm. Niño $200, adulto $100. Recorrido de 2 horas aprox. <a href="#reservar" data-ir="publico">Reserva aquí</a>.</p>
   </section>
 
   <section class="book" id="reservar" aria-labelledby="t-book">
-    <div>
-      <h2 id="t-book">Aparta la fecha de tu escuela</h2>
-      <p>Escríbenos con estos datos y te confirmamos la disponibilidad:</p>
-      <ul>
-        <li>Nombre de la escuela</li>
-        <li>Fecha que les interesa</li>
-        <li>Número de alumnos y grado(s)</li>
-        <li>Nombre y teléfono o WhatsApp de contacto</li>
-      </ul>
-      <p>La fecha queda apartada con el <b>50% de anticipo</b>. Se asignan por orden de reservación y las semanas antes de vacaciones de invierno son las más solicitadas.</p>
-      <p><b>¿Quieren conocer el recorrido antes?</b> Agenden una cita y los recibimos en Granja Ventura para que vean la Aldea.</p>
+    <div class="book-info">
+      <h2 id="t-book">Reserva tu lugar en la Aldea</h2>
+      <p>Llena el formulario y te contactamos por WhatsApp para confirmar la disponibilidad y cómo pagar.</p>
+      <div class="book-opt" data-solo="escuela">
+        <p><b>Escuelas:</b> lunes a viernes de 9:00 am a 2:00 pm. $100 por alumno; pagan 9 y entran 10. La fecha queda apartada con el <b>50% de anticipo</b>, por orden de reservación.</p>
+        <p><b>¿Quieren conocer el recorrido antes?</b> Márcalo en el formulario y los recibimos en Granja Ventura.</p>
+      </div>
+      <div class="book-opt" data-solo="publico" hidden>
+        <p><b>Público en general:</b> jueves a domingo de 4:30 a 8:00 pm. Niño $200, adulto $100. Recorrido de 2 horas aprox.</p>
+        <p class="pre-txt" hidden><b>Preventa:</b> $100 por persona hasta el 27 de noviembre.</p>
+      </div>
+      <p class="mail">¿Prefieres correo? <a href="mailto:ventas@planeteventsleon.com">ventas@planeteventsleon.com</a></p>
     </div>
-    <div>
-      <a class="btn" href="mailto:ventas@planeteventsleon.com?subject=Reservaci%C3%B3n%20de%20recorrido%20escolar%20%E2%80%93%20Aldea%20Navide%C3%B1a&amp;body=Hola%2C%20queremos%20reservar%20un%20recorrido%20escolar%20en%20La%20Aldea%20Navide%C3%B1a.%0D%0A%0D%0AEscuela%3A%20%0D%0AFecha%20que%20nos%20interesa%3A%20%0D%0AN%C3%BAmero%20de%20alumnos%3A%20%0D%0AGrado%28s%29%3A%20%0D%0ANombre%20y%20tel%C3%A9fono%20o%20WhatsApp%20de%20contacto%3A%20%0D%0A">Reservar por correo</a>
-      <a class="btn btn-alt" href="mailto:ventas@planeteventsleon.com?subject=Agendar%20visita%20a%20Granja%20Ventura%20%E2%80%93%20Aldea%20Navide%C3%B1a&amp;body=Hola%2C%20nos%20gustar%C3%ADa%20agendar%20una%20cita%20para%20conocer%20el%20recorrido%20de%20La%20Aldea%20Navide%C3%B1a%20antes%20de%20reservar.%0D%0A%0D%0AEscuela%3A%20%0D%0AD%C3%ADa%20y%20hora%20en%20que%20nos%20gustar%C3%ADa%20ir%3A%20%0D%0AN%C3%BAmero%20aproximado%20de%20alumnos%3A%20%0D%0ANombre%20y%20tel%C3%A9fono%20o%20WhatsApp%20de%20contacto%3A%20%0D%0A">Agendar visita previa</a>
-      <p class="mail">o escribe a <a href="mailto:ventas@planeteventsleon.com">ventas@planeteventsleon.com</a></p>
+
+    <form class="rf" id="rf" novalidate>
+      <div class="seg" role="tablist" aria-label="Tipo de reservación">
+        <button type="button" role="tab" data-tipo="escuela" aria-selected="true">Escuela</button>
+        <button type="button" role="tab" data-tipo="publico" aria-selected="false">Público en general</button>
+      </div>
+
+      <div class="rf-grid">
+        <label class="full" data-solo="escuela">Nombre de la escuela
+          <input name="escuela" autocomplete="organization" maxlength="160" required>
+        </label>
+        <label class="full"><span data-solo="escuela">Nombre de quien reserva (directora, maestra…)</span><span data-solo="publico" hidden>Tu nombre</span>
+          <input name="nombre" autocomplete="name" maxlength="120" required>
+        </label>
+        <label>WhatsApp
+          <input name="telefono" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="477 123 4567" maxlength="20" required>
+        </label>
+        <label>Correo <small>(opcional)</small>
+          <input name="correo" type="email" autocomplete="email" maxlength="160">
+        </label>
+        <label>Fecha
+          <input name="fecha" type="date" min="2026-11-27" max="2027-01-06" required>
+          <small class="hint" data-solo="escuela">Lunes a viernes</small><small class="hint" data-solo="publico" hidden>Jueves a domingo</small>
+        </label>
+        <label data-solo="publico" hidden>Hora de llegada aprox.
+          <select name="hora">
+            <option>4:30 pm</option><option>5:00 pm</option><option>5:30 pm</option><option>6:00 pm</option>
+          </select>
+        </label>
+        <label data-solo="escuela">Grado(s)
+          <input name="grados" maxlength="80" placeholder="Ej. 1° a 3° de primaria">
+        </label>
+        <label><span data-solo="escuela">Número de alumnos</span><span data-solo="publico" hidden>Niños</span>
+          <input name="ninos" type="number" inputmode="numeric" min="0" max="2000" required>
+        </label>
+        <label><span data-solo="escuela">Maestros que acompañan</span><span data-solo="publico" hidden>Adultos</span>
+          <input name="adultos" type="number" inputmode="numeric" min="0" max="500">
+        </label>
+        <label class="full chk" data-solo="escuela">
+          <input name="visita" type="checkbox"> Queremos agendar una visita previa para conocer el recorrido
+        </label>
+        <label class="full">Comentarios <small>(opcional)</small>
+          <textarea name="comentarios" rows="2" maxlength="800"></textarea>
+        </label>
+        <label class="hp" aria-hidden="true">No llenar <input name="sitio" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <p class="est" aria-live="polite"></p>
+      <p class="err" role="alert" hidden></p>
+      <button class="btn rf-send" type="submit">Enviar reservación</button>
+      <p class="fine">Al enviar aceptas nuestro <a href="/aviso-de-privacidad/">aviso de privacidad</a>. La reservación se confirma cuando te contactamos.</p>
+    </form>
+
+    <div class="rf-ok" id="rf-ok" hidden tabindex="-1">
+      <span class="ok-ico" aria-hidden="true">✓</span>
+      <h3>¡Recibimos tu reservación!</h3>
+      <p class="ok-txt">Te escribimos por WhatsApp en breve para confirmar la fecha.</p>
+      <a class="btn ok-wa" target="_blank" rel="noopener" hidden>Escribir por WhatsApp</a>
+      <button type="button" class="ok-otra">Hacer otra reservación</button>
     </div>
   </section>
 </main>
@@ -193,5 +280,6 @@
   <span>Precios en pesos mexicanos. Sujetos a cambio sin previo aviso. · <a href="/aviso-de-privacidad/" style="color:inherit">Aviso de privacidad</a></span>
 </footer>
 <script src="/assets/medicion.js?v=20261108"></script>
+<script src="/assets/aldea-reserva.js?v=20261113"></script>
 </body>
 </html>
