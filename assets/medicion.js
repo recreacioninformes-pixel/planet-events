@@ -44,7 +44,7 @@
     if (h.indexOf("wa.me/") > -1) medir("mensaje", "whatsapp", txt);
     else if (h.indexOf("mailto:") === 0) medir("mensaje", "correo", txt);
     else if (h.indexOf("tel:") === 0) medir("telefono", "telefono", txt);
-    else if (h.indexOf("ticketcity") > -1) medir("boletos", "boletos", txt);
+    else if (h.indexOf("ticketcity") > -1 || h.indexOf("/aldea-navidena/boletos") > -1) medir("boletos", "boletos", txt);
   }, true);
 
   /* Para probar desde la consola: window.PLANET_MEDIR.ultimo() */
