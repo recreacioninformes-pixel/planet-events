@@ -21,13 +21,15 @@
   var err = form.querySelector(".err");
   var precios = [];
   var cant = {};
-  var fmt = function (n) { return "$" + Number(n).toLocaleString("es-MX"); };
+  var fmt = function (n) { return "$" + Number(n).toLocaleString("es-MX", { maximumFractionDigits: 2 }); };
   var $ = function (n) { return form.elements[n]; };
 
   function cabeza(h) { return { apikey: SUPABASE_ANON_KEY, Authorization: "Bearer " + SUPABASE_ANON_KEY, "Content-Type": "application/json" }; }
 
   function piezas() { return precios.reduce(function (s, p) { return s + (cant[p.tipo] || 0); }, 0); }
-  function total() { return precios.reduce(function (s, p) { return s + (cant[p.tipo] || 0) * Number(p.precio); }, 0); }
+  function subtotal() { return precios.reduce(function (s, p) { return s + (cant[p.tipo] || 0) * Number(p.precio); }, 0); }
+  function cargo() { return precios.reduce(function (s, p) { return s + (cant[p.tipo] || 0) * Number(p.cargo || 0); }, 0); }
+  function total() { return subtotal() + cargo(); }
 
   function pintar() {
     var n = piezas();
@@ -38,6 +40,8 @@
       row.querySelector(".mas").disabled = n >= MAX;
     });
     totalEl.textContent = fmt(total());
+    var det = document.getElementById("desglose");
+    if (det) det.textContent = cargo() > 0 && n > 0 ? "Boletos " + fmt(subtotal()) + " + cargo por servicio " + fmt(cargo()) : "";
     btn.disabled = n === 0;
     btn.textContent = n === 0 ? "Elige tus boletos" : "Pagar " + fmt(total());
   }
@@ -56,7 +60,7 @@
       row.innerHTML = '<div><b></b><span></span></div>' +
         '<div class="step"><button type="button" class="menos" aria-label="Quitar uno">−</button><output aria-live="polite">0</output><button type="button" class="mas" aria-label="Agregar uno">+</button></div>';
       row.querySelector("b").textContent = (p.descripcion || p.tipo);
-      row.querySelector("span").textContent = fmt(p.precio) + " por boleto";
+      row.querySelector("span").textContent = fmt(p.precio) + " por boleto" + (Number(p.cargo) > 0 ? " + " + fmt(p.cargo) + " de cargo por servicio" : "");
       row.querySelector(".menos").addEventListener("click", function () { cant[p.tipo] = Math.max(0, cant[p.tipo] - 1); pintar(); });
       row.querySelector(".mas").addEventListener("click", function () { if (piezas() < MAX) { cant[p.tipo]++; pintar(); } });
       tk.appendChild(row);
